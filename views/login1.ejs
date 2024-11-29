@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>login/register form transparent</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="/public/assets/vendors/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/public/logins/login.css">
+</head>
+
+<body>
+  <div class="bg-box">
+    <div class="box">
+      <div class="tab">
+        <button id="loginbtn" onclick="myfunction('login')" class="tab-btn active">Login</button>
+        <button id="registerbtn" onclick="myfunction('register')" class="tab-btn">Register</button>
+      </div>
+      <div class="form-controler" id="login">
+        <div class="main-atas">
+          <i class="icon fas fa-user-shield"></i>
+          <h1 class="display">Login Here</h1>
+        </div>
+        <form action="">
+          <input type="text" placeholder="Email/Phone number">
+          <input type="text" placeholder="Password">
+          <button type="submit" id="login-btn">Login</button>
+        </form>
+        <div class="forgetPassword">
+          <a class="link" href="#">Forget password</a>
+          <!-- <a class="link" href="" class="tab-btn" id="registerbtn" onclick="myfunction('register')">Don't have
+            account</a> -->
+        </div>
+      </div>
+      <div class="form-controler" id="register">
+        <div class="main-atas register">
+          <i class="icon fas fa-user-plus"></i>
+          <h1 class="display">Register Here</h1>
+        </div>
+        <form action="">
+          <input type="text" placeholder="Email/Phone number">
+          <input type="text" placeholder="Enter new password">
+          <input type="text" placeholder="Confirm password">
+          <button type="submit" id="login-btn">Register</button>
+          <div class="tengahan">
+            <input type="checkbox" id="ch"><label for="ch" class="label-text">I accept the privacy policy</label>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="/public/jquery-3.6.0.min.js"></script>
+  <script src="/public/logins/login.js"></script>
+</body>
+
+</html>

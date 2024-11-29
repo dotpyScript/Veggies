@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Star Admin2 </title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="/assets/vendors/feather/feather.css">
+  <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="/assets/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="/assets/vendors/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/vendors/typicons/typicons.css">
+  <link rel="stylesheet" href="/assets/vendors/simple-line-icons/css/simple-line-icons.css">
+  <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="/assets/vendors/select2/select2.min.css">
+  <link rel="stylesheet" href="/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="/assets/images/favicon.png" />
+
+  <style>
+    .dropdown-btn {
+      width: 100%;
+      border: 1px solid #e4e4e3;
+      color: #7f8c8d;
+      /* background-color: #8bc34a; */
+    }
+
+    .dropdown-btn:hover {
+      /* background-color: #8bc34a; */
+      border: 1px solid #e4e4e3;
+      transition: ease 0.3s;
+      /* color: #fff; */
+      color: #7f8c8d;
+
+    }
+
+    .dropdown-btn:focus {
+      border: 1px solid #5c9719;
+      color: #7f8c8d;
+
+    }
+
+    .dropdown-header {
+      font-weight: 600;
+    }
+
+    .dropdown-item:hover {
+      background-color: #8bc34a;
+      color: #fff;
+
+    }
+
+    .dropdown-menu {
+      border: 1px solid #8bc34a;
+    }
+
+    .todo-Input:focus {
+      border: 1px solid #8bc34a !important;
+    }
+
+    label {
+      font-size: 0.9em !important;
+    }
+
+
+    .btn-schedule {
+      background: #8bc34a;
+      /* linear-gradient(to right, var(--primary-color), var(--secondary-color)); */
+      color: white;
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      margin-top: 2rem;
+    }
+
+    .btn-schedule:hover {
+      transform: translateY(-3px);
+      border: 2px solid #8bc34a;
+      background-color: #d7e4d6;
+      box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:/partials/_navbar.html -->
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+        <div class="me-3">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
+            <span class="icon-menu"></span>
+          </button>
+        </div>
+        <div>
+          <a class="navbar-brand brand-logo" href="index.html">
+            <span>VEGGIES</span>
+          </a>
+          <a class="navbar-brand brand-logo-mini" href="index.html">
+            <img src="/assets/images/logo-mini.svg" alt="logo" />
+          </a>
+        </div>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-top">
+        <ul class="navbar-nav">
+          <li class="nav-item fw-semibold d-none d-lg-block ms-0">
+            <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">John Doe</span></h1>
+            <h3 class="welcome-sub-text">Your performance summary this week </h3>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item">
+            <div class="container">
+              <header style="font-size: medium; font-weight: 600;">Weather</header>
+              <div>
+                <p style="font-size: medium;">
+                  23◦C
+                </p>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
+              <i class="icon-bell"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+              aria-labelledby="notificationDropdown">
+              <a class="dropdown-item py-3 border-bottom">
+                <p class="mb-0 fw-medium float-start">You have 4 new notifications </p>
+                <span class="badge badge-pill badge-primary float-end">View all</span>
+              </a>
+              <a class="dropdown-item preview-item py-3">
+                <div class="preview-thumbnail">
+                  <i class="mdi mdi-alert m-auto text-primary"></i>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject fw-normal text-dark mb-1">Application Error</h6>
+                  <p class="fw-light small-text mb-0"> Just now </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item py-3">
+                <div class="preview-thumbnail">
+                  <i class="mdi mdi-lock-outline m-auto text-primary"></i>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject fw-normal text-dark mb-1">Settings</h6>
+                  <p class="fw-light small-text mb-0"> Private message </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item py-3">
+                <div class="preview-thumbnail">
+                  <i class="mdi mdi-airballoon m-auto text-primary"></i>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject fw-normal text-dark mb-1">New user registration</h6>
+                  <p class="fw-light small-text mb-0"> 2 days ago </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="icon-mail icon-lg"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+              aria-labelledby="countDropdown">
+              <a class="dropdown-item py-3">
+                <p class="mb-0 fw-medium float-start">You have 7 unread mails </p>
+                <span class="badge badge-pill badge-primary float-end">View all</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="/assets/images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis fw-medium text-dark">Marian Garner </p>
+                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="/assets/images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis fw-medium text-dark">David Grey </p>
+                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="/assets/images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis fw-medium text-dark">Travis Jenkins </p>
+                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+            <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+              <img class="img-xs rounded-circle" src="/assets/images/faces/face8.jpg" alt="Profile image"> </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+              <div class="dropdown-header text-center">
+                <img class="img-md rounded-circle" src="/assets/images/faces/face8.jpg" alt="Profile image">
+                <p class="mb-1 mt-3 fw-semibold">Allen Moreno</p>
+                <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+              </div>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My
+                Profile <span class="badge badge-pill badge-danger">1</span></a>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i>
+                Messages</a>
+              <a class="dropdown-item"><i
+                  class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i>
+                Activity</a>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i>
+                FAQ</a>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+          data-bs-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>
+
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar"
+        style="box-shadow: 0px 0px 20px 0.1px rgba(0, 0, 0, 0.2); border-radius: 0px 20px 20px 0px;">
+
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="mdi mdi-grid-large menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item nav-category">Crop management</li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="add_crop.html">
+              <i class="menu-icon mdi mdi-floor-plan"></i>
+              <span class="menu-title">Add Plot/Crop</span>
+              <!-- <i class="menu-arrow"></i> -->
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="crop_circle.html">
+              <i class="menu-icon mdi mdi-card-text-outline"></i>
+              <span class="menu-title">Crop Circle</span>
+            </a>
+          </li>
+          <li class="nav-item nav-category">Harvest</li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="harvest.html">
+              <i class="menu-icon mdi mdi-chart-line"></i>
+              <span class="menu-title">Submit Harvest</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="view_harvest.html">
+              <i class="menu-icon mdi mdi-chart-arc"></i>
+              <span class="menu-title">View Harvest</span>
+            </a>
+          </li>
+          <li class="nav-item nav-category">Task Management</li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="set_schedule.html">
+              <i class="menu-icon mdi mdi-table"></i>
+              <span class="menu-title">Set Schedule</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="view_schedule.html">
+              <i class="menu-icon mdi mdi-layers-outline"></i>
+              <span class="menu-title">View Schedules</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="notification.html">
+              <i class="menu-icon mdi mdi-notification-clear-all"></i>
+              <span class="menu-title">Notifications</span>
+            </a>
+          </li>
+          <li class="nav-item nav-category">Logout</li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">
+              <i class="menu-icon mdi mdi-logout"></i>
+              <span class="menu-title">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card" style="border: 1px solid #5c9719;">
+                <div class="card-body">
+                  <h4 class="card-title">Harvest</h4>
+
+                  <form action="">
+                    <div class="form-group">
+                      <label class="inp">Crop Variety</label>
+                      <div class="col-sm-9 w-100">
+                        <div class="dropdown">
+                          <button class="btn dropdown-toggle text-start dropdown-btn " type="button"
+                            id="dropdownMenuSizeButton2" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">Crop Variety</button>
+
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton2">
+                            <h6 class="dropdown-header">Select Category</h6>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-item" onclick="updateButtonText('Vegitables')">Vegitables</div>
+                            <div class="dropdown-item" onclick="updateButtonText('Beverages')">Beverages</div>
+                            <div class="dropdown-item" onclick="updateButtonText('Perenial Crops')">Perenial Crops</div>
+                            <div class="dropdown-item" onclick="updateButtonText('Cash Crops')">Cash Crops</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- <div class="col-md-6"> -->
+                    <div class="form-group">
+                      <label>Quantity</label>
+                      <div class=" w-100">
+                        <input class="form-control todo-Input" placeholder="300pcs" type="text" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Harvest Date</label>
+                      <div class=" w-100">
+                        <input class="form-control todo-Input" placeholder="dd/mm/yyyy" type="date" />
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-schedule">Submit</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:/partials/_footer.html -->
+  <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a
+          href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from
+        BootstrapDash.</span>
+      <span class="float-none float-sm-end d-block mt-1 mt-sm-0 text-center">Copyright © 2023. All rights
+        reserved.</span>
+    </div>
+  </footer>
+  <!-- partial -->
+  </div>
+  <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
+  <script src="/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="/assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+  <script src="/assets/vendors/select2/select2.min.js"></script>
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="/assets/js/off-canvas.js"></script>
+  <script src="/assets/js/template.js"></script>
+  <script src="/assets/js/settings.js"></script>
+  <script src="/assets/js/hoverable-collapse.js"></script>
+  <script src="/assets/js/todolist.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="/assets/js/file-upload.js"></script>
+  <script src="/assets/js/typeahead.js"></script>
+  <script src="/assets/js/select2.js"></script>
+  <!-- End custom js for this page-->
+
+  <script>
+    function updateButtonText(selectedText) {
+      // Update the button text with the selected option
+      document.getElementById('dropdownMenuSizeButton2').innerText = selectedText;
+    }
+  </script>
+</body>
+
+</html>

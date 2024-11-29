@@ -1,0 +1,215 @@
+<%- include('partials/_head') %>
+  </head>
+
+  <body class="with-welcome-text">
+    <div class="container-scroller">
+      <%- include('partials/_navbar') %>
+
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+          <!-- partial:partials/_sidebar.html -->
+
+          <%- include('partials/_sidebar') %>
+
+            <!-- partial -->
+            <div class="main-panel">
+              <div class="content-wrapper">
+                <div class="row">
+                  <div class="col-lg-12 grid-margin stretch-card">
+
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title">Farm Information</h4>
+
+                        <!-- Tab navigation with search -->
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                          <ul class="nav nav-tabs" id="farmTab" role="tablist">
+                            <li class="nav-item">
+                              <a class="nav-link active" id="farmA-tab" data-toggle="tab" href="#farmA" role="tab"
+                                aria-controls="farmA" aria-selected="true">Farm A</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" id="farmB-tab" data-toggle="tab" href="#farmB" role="tab"
+                                aria-controls="farmB" aria-selected="false">Farm B</a>
+                            </li>
+                          </ul>
+                          <div>
+                            <input type="text" id="searchInput" class="form-control" placeholder="Search"
+                              aria-label="Search" style="max-width: 200px;">
+                          </div>
+                        </div>
+
+                        <!-- Tab content -->
+                        <div class="tab-content mt-3" id="farmTabContent">
+                          <!-- Farm A Table -->
+                          <div class="tab-pane fade show active" id="farmA" role="tabpanel" aria-labelledby="farmA-tab">
+                            <div class="table-responsive">
+                              <table class="table table-hover" id="enhancedTableA">
+                                <thead>
+                                  <tr>
+                                    <th>Date</th>
+                                    <th>Fertilizer Type</th>
+                                    <th>Pest Control</th>
+                                    <th>Category</th>
+                                    <th>Expected Harvest</th>
+                                    <th>Crop Stage</th>
+                                    <th>Quantity Planted</th>
+                                    <th>Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>12/01/2023</td>
+                                    <td>NPk 15/15</td>
+                                    <td>Swept Powder</td>
+                                    <td>Cash crop</td>
+                                    <td>12/04/2023</td>
+                                    <td>seedling</td>
+                                    <td>300 pcs</td>
+                                    <!-- <td class="text-danger">28.76% <i class="ti-arrow-down"></i></td>
+                              <td><span class="badge badge-danger">Pending</span></td> -->
+                                    <td>
+                                      <button class="btn-light btn-n" data-toggle="tooltip" data-placement="top"
+                                        title="View" style="background-color:#8bc34a;">
+                                        <i class="mdi mdi-eye"></i>
+                                      </button>
+                                      <button class="btn-n btn-light" data-toggle="tooltip" data-placement="top"
+                                        title="Edit" style="background-color:#4a60c3;">
+                                        <i class="mdi mdi-pen"></i>
+                                      </button>
+                                      <button class="btn-n btn-light" data-toggle="tooltip" data-placement="top"
+                                        title="Delete" style="background-color:#e95555;">
+                                        <i class="mdi mdi-trash-can"></i>
+                                      </button>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>13/01/2023</td>
+                                    <td>NPk 20/20</td>
+                                    <td>Natural Control</td>
+                                    <td>Food crop</td>
+                                    <td>13/04/2023</td>
+                                    <td>mature</td>
+                                    <td>500 pcs</td>
+                                    <!-- <td class="text-danger">21.06% <i class="ti-arrow-down"></i></td>
+                              <td><span class="badge badge-warning">In progress</span></td> -->
+                                    <td>
+                                      <button class="btn-light btn-n" data-toggle="tooltip" data-placement="top"
+                                        title="View" style="background-color:#8bc34a;">
+                                        <i class="mdi mdi-eye"></i>
+                                      </button>
+                                      <button class="btn-n btn-light" data-toggle="tooltip" data-placement="top"
+                                        title="Edit" style="background-color:#4a60c3;">
+                                        <i class="mdi mdi-pen"></i>
+                                      </button>
+                                      <button class="btn-n btn-light" data-toggle="tooltip" data-placement="top"
+                                        title="Delete" style="background-color:#e95555;">
+                                        <i class="mdi mdi-trash-can"></i>
+                                      </button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+
+                          <!-- Farm B Table -->
+                          <div class="tab-pane fade" id="farmB" role="tabpanel" aria-labelledby="farmB-tab">
+                            <div class="table-responsive">
+                              <table class="table table-hover" id="enhancedTableB">
+                                <thead>
+                                  <tr>
+                                    <th>Plot Name</th>
+                                    <th>Soil Type</th>
+                                    <th>Land Size</th>
+                                    <th>Irrigation</th>
+                                    <th>Crop Rotation</th>
+                                    <th>Comments</th>
+                                    <th>Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Plot A</td>
+                                    <td>Loamy</td>
+                                    <td>28.76%</td>
+                                    <td>Everyday</td>
+                                    <td>Cash crop</td>
+                                    <td>This crops has yield about 30ectre</td>
+                                    <!-- <td class="text-danger">35.00% <i class="ti-arrow-down"></i></td>
+                              <td><span class="badge badge-info">Fixed</span></td> -->
+                                    <td>
+                                      <button class="btn-light btn-n" data-toggle="tooltip" data-placement="top"
+                                        title="View" style="background-color:#8bc34a;">
+                                        <i class="mdi mdi-eye"></i>
+                                      </button>
+                                      <button class="btn-n btn-light" data-toggle="tooltip" data-placement="top"
+                                        title="Edit" style="background-color:#4a60c3;">
+                                        <i class="mdi mdi-pen"></i>
+                                      </button>
+                                      <button class="btn-n btn-light" data-toggle="tooltip" data-placement="top"
+                                        title="Delete" style="background-color:#e95555;">
+                                        <i class="mdi mdi-trash-can"></i>
+                                      </button>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Plot B</td>
+                                    <td>Sandy</td>
+                                    <td>35.20%</td>
+                                    <td>Bi-weekly</td>
+                                    <td>Food crop</td>
+                                    <td>High yield expected</td>
+                                    <!-- <td class="text-success">82.00% <i class="ti-arrow-up"></i></td>
+                              <td><span class="badge badge-success">Completed</span></td> -->
+                                    <td>
+                                      <button class="btn-light btn-n" data-toggle="tooltip" data-placement="top"
+                                        title="View" style="background-color:#8bc34a;">
+                                        <i class="mdi mdi-eye"></i>
+                                      </button>
+                                      <button class="btn-n btn-light" data-toggle="tooltip" data-placement="top"
+                                        title="Edit" style="background-color:#4a60c3;">
+                                        <i class="mdi mdi-pen"></i>
+                                      </button>
+                                      <button class="btn-n btn-light" data-toggle="tooltip" data-placement="top"
+                                        title="Delete" style="background-color:#e95555;">
+                                        <i class="mdi mdi-trash-can"></i>
+                                      </button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                    <!-- </div> -->
+
+                    <!-- </div> -->
+                    <!-- content-wrapper ends -->
+                    <!-- partial:partials/_footer.html -->
+                    <footer class="footer">
+                      <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a
+                            href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from
+                          BootstrapDash.</span>
+                        <span class="float-none float-sm-end d-block mt-1 mt-sm-0 text-center">Copyright © 2023. All
+                          rights
+                          reserved.</span>
+                      </div>
+                    </footer>
+                    <!-- partial -->
+                  </div>
+                  <!-- main-panel ends -->
+                </div>
+                <!-- page-body-wrapper ends -->
+              </div>
+              <!-- container-scroller -->
+              <!-- plugins:js -->
+
+
+  </body>
+
+  </html>

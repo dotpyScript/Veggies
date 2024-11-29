@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Admin Dashboard</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="/assets/vendors/feather/feather.css">
+  <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="/assets/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="/assets/vendors/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/vendors/typicons/typicons.css">
+  <link rel="stylesheet" href="/assets/vendors/simple-line-icons/css/simple-line-icons.css">
+  <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="/assets/images/favicon.png" />
+
+  <style>
+    .bordered {
+      border-radius: 5px;
+      max-width: 300px;
+      padding: 10px 12px;
+      width: 150px;
+      /* border: 2px solid #8bc34a; */
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    :root {
+      --primary-color: #8bc34a;
+      --secondary-color: #3498db;
+      --background-color: #f8f9fa;
+      --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    body {
+      background-color: var(--background-color);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .schedule-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+    }
+
+    .schedule-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: var(--card-shadow);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .schedule-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .schedule-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .schedule-header:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      border-radius: 2px;
+    }
+
+    .schedule-header h2 {
+      font-size: 2.5rem;
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    .form-group label {
+      font-weight: 500;
+      color: #34495e;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+      border-radius: 10px;
+      border: 2px solid #e0e0e0;
+      padding: 0.75rem 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .todo-Input:focus {
+      border: 1px solid #8bc34a !important;
+    }
+
+    /*
+    .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.2rem rgba(46, 204, 113, 0.25);
+    }
+*/
+    .day-select-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      padding: 1.5rem;
+      background: #f8f9fa;
+      border-radius: 15px;
+      border: 2px solid #e0e0e0;
+    }
+
+
+    .day-checkbox {
+      display: none;
+    }
+
+    .day-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1rem;
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .day-checkbox:checked+.day-label {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+      transform: scale(1.05);
+    }
+
+    .time-input {
+      position: relative;
+    }
+
+    .time-input i {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #7f8c8d;
+    }
+
+    .btn-schedule {
+      background: #8bc34a;
+      /* linear-gradient(to right, var(--primary-color), var(--secondary-color)); */
+      color: white;
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      margin-top: 2rem;
+    }
+
+    .btn-schedule:hover {
+      transform: translateY(-3px);
+      border: 2px solid #8bc34a;
+      background-color: #d7e4d6;
+      box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+    }
+
+    .dropdown-btn {
+      width: 100%;
+      border: 1px solid #e4e4e3;
+      /* background-color: #8bc34a; */
+    }
+
+    .dropdown-btn:hover {
+      /* background-color: #8bc34a; */
+      border: 1px solid #e4e4e3;
+      transition: ease 0.3s;
+      /* color: #fff; */
+    }
+
+    .dropdown-btn:focus {
+      border: 1px solid #5c9719;
+    }
+
+    .dropdown-header {
+      font-weight: 600;
+    }
+
+    .dropdown-item:hover {
+      background-color: #8bc34a;
+      color: #fff;
+    }
+
+    .dropdown-menu {
+      border: 1px solid #8bc34a;
+    }
+
+    @media (max-width: 768px) {
+      .schedule-container {
+        padding: 1rem;
+      }
+
+      .schedule-card {
+        padding: 1.5rem;
+      }
+
+      .schedule-header h2 {
+        font-size: 2rem;
+      }
+
+      .day-select-container {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      }
+    }
+
+    .input-error {
+      border-color: red;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+
+<body class="with-welcome-text">
+  <div class="container-scroller">
+
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+        <div class="me-3">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
+            <span class="icon-menu"></span>
+          </button>
+        </div>
+        <div>
+          <a class="navbar-brand brand-logo" href="index.html">
+            <span>VEGGIES</span>
+          </a>
+          <a class="navbar-brand brand-logo-mini" href="index.html">
+            <img src="/assets/images/logo-mini.svg" alt="logo" />
+          </a>
+        </div>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-top">
+        <ul class="navbar-nav">
+          <li class="nav-item fw-semibold d-none d-lg-block ms-0">
+            <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">John Doe</span></h1>
+            <h3 class="welcome-sub-text">Your performance summary this week </h3>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item">
+            <div class="container">
+              <header style="font-size: medium; font-weight: 600;">Weather</header>
+              <div>
+                <p style="font-size: medium;">
+                  23◦C
+                </p>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
+              <i class="icon-bell"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+              aria-labelledby="notificationDropdown">
+              <a class="dropdown-item py-3 border-bottom">
+                <p class="mb-0 fw-medium float-start">You have 4 new notifications </p>
+                <span class="badge badge-pill badge-primary float-end">View all</span>
+              </a>
+              <a class="dropdown-item preview-item py-3">
+                <div class="preview-thumbnail">
+                  <i class="mdi mdi-alert m-auto text-primary"></i>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject fw-normal text-dark mb-1">Application Error</h6>
+                  <p class="fw-light small-text mb-0"> Just now </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item py-3">
+                <div class="preview-thumbnail">
+                  <i class="mdi mdi-lock-outline m-auto text-primary"></i>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject fw-normal text-dark mb-1">Settings</h6>
+                  <p class="fw-light small-text mb-0"> Private message </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item py-3">
+                <div class="preview-thumbnail">
+                  <i class="mdi mdi-airballoon m-auto text-primary"></i>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject fw-normal text-dark mb-1">New user registration</h6>
+                  <p class="fw-light small-text mb-0"> 2 days ago </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="icon-mail icon-lg"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+              aria-labelledby="countDropdown">
+              <a class="dropdown-item py-3">
+                <p class="mb-0 fw-medium float-start">You have 7 unread mails </p>
+                <span class="badge badge-pill badge-primary float-end">View all</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="/assets/images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis fw-medium text-dark">Marian Garner </p>
+                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="/assets/images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis fw-medium text-dark">David Grey </p>
+                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="/assets/images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis fw-medium text-dark">Travis Jenkins </p>
+                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+            <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+              <img class="img-xs rounded-circle" src="/assets/images/faces/face8.jpg" alt="Profile image"> </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+              <div class="dropdown-header text-center">
+                <img class="img-md rounded-circle" src="/assets/images/faces/face8.jpg" alt="Profile image">
+                <p class="mb-1 mt-3 fw-semibold">Allen Moreno</p>
+                <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+              </div>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My
+                Profile <span class="badge badge-pill badge-danger">1</span></a>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i>
+                Messages</a>
+              <a class="dropdown-item"><i
+                  class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i>
+                FAQ</a>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+          data-bs-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>
+
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar"
+        style="box-shadow: 0px 0px 20px 0.1px rgba(0, 0, 0, 0.2); border-radius: 0px 20px 0px 0px;">
+
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="mdi mdi-grid-large menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item nav-category">Crop management</li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="add_crop.html">
+              <i class="menu-icon mdi mdi-floor-plan"></i>
+              <span class="menu-title">Add Plot/Crop</span>
+              <!-- <i class="menu-arrow"></i> -->
+            </a>
+            <!-- <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/ui-features/buttons.html">Buttons</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/ui-features/dropdowns.html">Dropdowns</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/ui-features/typography.html">Typography</a></li>
+              </ul>
+            </div> -->
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="crop_circle.html">
+              <i class="menu-icon mdi mdi-card-text-outline"></i>
+              <span class="menu-title">Crop Circle</span>
+            </a>
+          </li>
+
+          <li class="nav-item nav-category">Harvest</li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="harvest.html">
+              <i class="menu-icon mdi mdi-chart-line"></i>
+              <span class="menu-title">Submit Harvest</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="view_harvest.html">
+              <i class="menu-icon mdi mdi-chart-arc"></i>
+              <span class="menu-title">View Harvest</span>
+            </a>
+          </li>
+          <li class="nav-item nav-category">Task Management</li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="set_schedule.html">
+              <i class="menu-icon mdi mdi-table"></i>
+              <span class="menu-title">Set Schedule</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="view_schedule.html">
+              <i class="menu-icon mdi mdi-layers-outline"></i>
+              <span class="menu-title">View Schedules</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="notification.html">
+              <i class="menu-icon mdi mdi-notification-clear-all"></i>
+              <span class="menu-title">Notifications</span>
+            </a>
+          </li>
+          <li class="nav-item nav-category">Logout</li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">
+              <i class="menu-icon mdi mdi-logout"></i>
+              <span class="menu-title">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-sm-12">
+
+              <div class="schedule-container">
+                <div class="schedule-card">
+                  <div class="schedule-header">
+                    <h2>Set Irrigation Schedule</h2>
+                  </div>
+                  <form>
+                    <div class="row mb-4">
+                      <div class="col-md-6 mb-3">
+
+                        <div class="form-group">
+                          <label for="dropdownMenuSizeButton1">Crop Variety</label>
+                          <button class="btn dropdown-toggle text-start dropdown-btn w-100" type="button"
+                            id="dropdownMenuSizeButton1" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">Crop Variety</button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton1">
+                            <div class="dropdown-item"
+                              onclick="document.getElementById('dropdownMenuSizeButton1').innerText = 'Vegetables'">
+                              Vegetables</div>
+                            <div class="dropdown-item"
+                              onclick="document.getElementById('dropdownMenuSizeButton1').innerText = 'Beverages'">
+                              Beverages</div>
+                            <div class="dropdown-item"
+                              onclick="document.getElementById('dropdownMenuSizeButton1').innerText = 'Perennial Crops'">
+                              Perennial Crops</div>
+                            <div class="dropdown-item"
+                              onclick="document.getElementById('dropdownMenuSizeButton1').innerText = 'Cash Crops'">
+                              Cash Crops</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                          <label>Plot/Hectare Size</label>
+                          <input type="number" name="plotSize" id="plotSize" class="form-control todo-Input"
+                            placeholder="Enter size">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group mb-4" id="day-selection">
+                      <label>Select Irrigation Days</label>
+                      <div class="day-select-container">
+                        <div>
+                          <input type="checkbox" id="monday" class="day-checkbox">
+                          <label for="monday" class="day-label">Monday</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" id="tuesday" class="day-checkbox">
+                          <label for="tuesday" class="day-label">Tuesday</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" id="wednesday" class="day-checkbox">
+                          <label for="wednesday" class="day-label">Wednesday</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" id="thursday" class="day-checkbox">
+                          <label for="thursday" class="day-label">Thursday</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" id="friday" class="day-checkbox">
+                          <label for="friday" class="day-label">Friday</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" id="saturday" class="day-checkbox">
+                          <label for="saturday" class="day-label">Saturday</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" id="sunday" class="day-checkbox">
+                          <label for="sunday" class="day-label">Sunday</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" id="everyday" class="day-checkbox">
+                          <label for="everyday" class="day-label">Every Day</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row mb-4">
+                      <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                          <label>Start Time</label>
+                          <div class="time-input">
+                            <input type="time" class="form-control todo-Input" name="startTime" id="startTime">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                          <label>End Time</label>
+                          <div class="time-input">
+                            <input type="time" class="form-control todo-Input" name="endTime" id="endTime">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class=" row mb-4">
+                      <div class="col-md-6 mb-3">
+
+                        <div class="form-group">
+                          <label for="dropdownMenuSizeButton2">Frequency</label>
+                          <button class="btn dropdown-toggle text-start dropdown-btn w-100" type="button"
+                            id="dropdownMenuSizeButton2" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">Frequency</button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton2">
+                            <div class="dropdown-item"
+                              onclick="document.getElementById('dropdownMenuSizeButton2').innerText = 'Daily'">Daily
+                            </div>
+                            <div class="dropdown-item"
+                              onclick="document.getElementById('dropdownMenuSizeButton2').innerText = 'Weekly'">Weekly
+                            </div>
+                            <div class="dropdown-item"
+                              onclick="document.getElementById('dropdownMenuSizeButton2').innerText = 'Monthly'">
+                              Monthly</div>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                          <label for="dropdownMenuSizeButton3">Set Reminder</label>
+                          <button class="btn dropdown-toggle text-start dropdown-btn w-100" type="button"
+                            id="dropdownMenuSizeButton3" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">Choose Reminder Time</button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">
+                            <div class="dropdown-item"
+                              onclick="document.getElementById('dropdownMenuSizeButton3').innerText = '15 mins before'">
+                              15 mins before</div>
+                            <div class="dropdown-item"
+                              onclick="document.getElementById('dropdownMenuSizeButton3').innerText = '30 mins before'">
+                              30 mins before</div>
+                            <div class="dropdown-item"
+                              onclick="document.getElementById('dropdownMenuSizeButton3').innerText = '1 hour before'">
+                              1 hour before</div>
+                            <div class="dropdown-item"
+                              onclick="document.getElementById('dropdownMenuSizeButton3').innerText = '2 hours before'">
+                              2 hours before</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="text-center">
+                        <button type="submit" class="btn btn-schedule">Save Schedule</button>
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- i will like you to use the "Toast" Alert in React as an inspiration to develop mine and add animations and any other
+necessary code to make it ruburst, beautiful and then use it in the form -->
+
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+      <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a
+              href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from
+            BootstrapDash.</span>
+          <span class="float-none float-sm-end d-block mt-1 mt-sm-0 text-center">Copyright © 2023. All rights
+            reserved.</span>
+        </div>
+      </footer>
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+  </div>
+  ]
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
+  <script src="/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+  <script>
+    // Wait for the document to be fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+      const dayCheckboxes = document.querySelectorAll('.day-checkbox');
+      const everydayCheckbox = document.getElementById('everyday');
+      const individualDays = Array.from(dayCheckboxes).filter(checkbox => checkbox.id !== 'everyday');
+
+      everydayCheckbox.addEventListener('change', function () {
+        individualDays.forEach(checkbox => {
+          checkbox.checked = this.checked;
+          checkbox.disabled = this.checked;
+          const label = document.querySelector(`label[for="${checkbox.id}"]`);
+          label.style.opacity = this.checked ? '0.7' : '1';
+        });
+      });
+
+      individualDays.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+          const allChecked = individualDays.every(day => day.checked);
+          everydayCheckbox.checked = allChecked;
+        });
+      });
+
+      const scheduleForm = document.querySelector('form');
+      scheduleForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        clearErrors(); // Clear previous error messages
+
+        const formData = {
+          cropType: document.querySelector('#dropdownMenuSizeButton1').innerText,
+          plotSize: document.querySelector('input[name="plotSize"]').value,
+          selectedDays: Array.from(dayCheckboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.id),
+          startTime: document.querySelector('input[name="startTime"]').value,
+          endTime: document.querySelector('input[name="endTime"]').value,
+          frequency: document.querySelector('#dropdownMenuSizeButton2').innerText,
+          reminder: document.querySelector('#dropdownMenuSizeButton3').innerText
+        };
+
+        let isValid = true;
+
+        // Validation for each field
+        if (formData.cropType === 'Crop Variety') {
+          showError('dropdownMenuSizeButton1', 'Please select a crop type');
+          isValid = false;
+        }
+        if (!formData.plotSize) {
+          showError('plotSize', 'Please enter plot size');
+          isValid = false;
+        }
+        if (formData.selectedDays.length === 0) {
+          showError('day-selection', 'Please select at least one day for irrigation');
+          isValid = false;
+        }
+        if (!formData.startTime || !formData.endTime || formData.startTime >= formData.endTime) {
+          showError('startTime', 'Start and end times are required, and end time must be after start time');
+          isValid = false;
+        }
+        if (formData.frequency === 'Frequency') {
+          showError('dropdownMenuSizeButton2', 'Please select a frequency');
+          isValid = false;
+        }
+        if (formData.reminder === 'Choose Reminder Time') {
+          showError('dropdownMenuSizeButton3', 'Please select a reminder time');
+          isValid = false;
+        }
+
+        if (isValid) {
+          console.log('Form Data:', formData);
+          // Submit the form or send data to backend
+        } else {
+          document.querySelector('.input-error').focus();
+        }
+      });
+
+      // Error display functions
+      function showError(id, message) {
+        const inputElement = document.getElementById(id) || document.querySelector(`input[name="${id}"]`);
+        inputElement.classList.add('input-error');
+        inputElement.style.borderColor = 'red';
+
+        const errorElement = document.createElement('small');
+        errorElement.className = 'error-message';
+        errorElement.textContent = message;
+
+        inputElement.closest('.form-group').appendChild(errorElement);
+      }
+
+      function clearErrors() {
+        document.querySelectorAll('.input-error').forEach(el => {
+          el.classList.remove('input-error');
+          el.style.borderColor = '';
+        });
+        document.querySelectorAll('.error-message').forEach(el => el.remove());
+      }
+    });
+  </script>
+</body>
+
+</html>
