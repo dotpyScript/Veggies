@@ -246,18 +246,6 @@
   <script src="/flowbite.min.js"></script>
   <script src="/toast_alert.js"></script>
   <script src="/register.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const params = new URLSearchParams(window.location.search);
-      const status = params.get("status");
-
-      if (status === "success") {
-        alertify.success("Login successful! Welcome back!");
-      } else if (status === "failure") {
-        alertify.error("Login failed. Please try again.");
-      }
-    });
-  </script>
 
 </body>
 

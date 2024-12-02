@@ -190,15 +190,13 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((data) => {
           this.showLoadingState(false);
 
-          if (data.success) {
+          if (data.status === "ok") {
             showSuccess(data.message || "successfully Login", 1700);
             setTimeout(() => {
-              window.location.href = "/index";
+              // window.location.href = "/index";
+              location.href = data.redirect;
             }, 3000);
-            // Successful login
-            // window.location.href = "/index";
           } else {
-            // Login failed
             showError(data.message || "Login Failed", 1700);
           }
         })
@@ -298,20 +296,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     handleAuthenticationCallback() {
-      // Check URL for authentication status
       const urlParams = new URLSearchParams(window.location.search);
       const status = urlParams.get("status");
 
       if (status === "success") {
-        // this.showSuccessNotification("Successfully logged in");
-        // Optional: Redirect to dashboard or home page
-        showSuccess(status.message || "successfully Login", 1700);
+        showSuccess("Successfully logged in", 1700);
         setTimeout(() => {
           window.location.href = "/index";
         }, 3000);
       } else if (status === "failure") {
-        showError(status.message || "Authentication Failde", 1700);
-        // this.showErrorNotification("Authentication failed");
+        showError("Authentication failed", 1700);
       }
     }
 
@@ -342,35 +336,30 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize Authentication Components
   const authManager = new AuthenticationManager();
   const socialAuthHandler = new SocialAuthHandler();
-  googleLogin();
 
   // Handle any authentication callbacks
   socialAuthHandler.handleAuthenticationCallback();
 });
 
 // Main function to handle Google login callback
-function googleLogin() {
-  fetch("/auth/google/callback")
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error("Login failed"); // Handle HTTP errors
-      }
-      return res.json(); // Parse JSON response
-    })
-    .then((data) => {
-      handleLoginResponse(data); // Call the response handler
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      showError(data.message, 1700);
-    });
-}
-
-// Function to handle response and alert
-function handleLoginResponse(data) {
-  if (data.ok) {
-    showSuccess(data.message, 1700);
-  } else {
-    showError(data.message, 1700);
-  }
-}
+// fetch("/auth/google/callback")
+//   .then((res) => {
+//     if (!res.ok) {
+//       throw new Error("Login failed");
+//     }
+//     return res.json();
+//   })
+//   .then((data) => {
+//     if (data.ok) {
+//       showSuccess(data.message || "Successfully logged in", 1700);
+//       setTimeout(() => {
+//         window.location.href = "/index";
+//       }, 3000);
+//     } else {
+//       showError(data.message || "Login failed", 1700);
+//     }
+//   })
+//   .catch((error) => {
+//     console.error("Error:", error);
+//     showError("Internal server error. Please try again later.", 1700);
+//   });

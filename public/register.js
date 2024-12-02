@@ -1,4 +1,3 @@
-// import { showSuccess, showError } from "./toast_alert";
 document.addEventListener("DOMContentLoaded", function () {
   // Color palettes for different texts
   const colorPalettes = [
@@ -642,7 +641,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          showSucess(data.message || "Registration successful!", 2000);
+          showSuccess(data.message || "Registration successful!", 2000);
           setTimeout(() => {
             location.href = "/login";
           }, 3000);
@@ -687,4 +686,15 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .querySelector(".facebook-signin")
     ?.addEventListener("click", socialAuthHandler.initiateFacebookSignIn);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get("status");
+
+  if (status === "success") {
+    showSuccess("Login successful! Welcome back!");
+  } else if (status === "failure") {
+    showError("Login failed. Please try again.");
+  }
 });

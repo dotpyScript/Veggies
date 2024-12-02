@@ -1,8 +1,9 @@
 const express = require("express");
+const passport = require("passport");
 const { ensureGuest } = require("../middlewares/ensureAuth");
 const {
   googleAuth,
-  googleCallback,
+  // googleCallback,
   facebookAuth,
   facebookCallback,
 } = require("../middlewares/googleAuth");
@@ -15,7 +16,6 @@ const {
   postLogin,
   getRegister,
   postRegister,
-  getGoogleCallBack,
   logout,
 } = require("../controllers/authController");
 
@@ -31,7 +31,14 @@ router.post("/register", registerValidation, postRegister);
 
 // Google Authentication Routes
 router.get("/auth/google", googleAuth);
-router.get("/auth/google/callback", googleCallback, getGoogleCallBack);
+
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "/login?status=failure",
+    successRedirect: "/login?status=success",
+  })
+);
 
 // facebook Authentication Routes
 router.get("/auth/facebook", facebookAuth);

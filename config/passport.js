@@ -1,6 +1,6 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
-const User = require("../models/user.models"); // Adjust path as needed
+const User = require("../models/user.models");
 
 module.exports = (passport) => {
   // Google Strategy

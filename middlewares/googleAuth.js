@@ -4,9 +4,9 @@ const passport = require("passport");
 const googleAuth = passport.authenticate("google", {
   scope: ["profile", "email"],
 });
-const googleCallback = passport.authenticate("google", {
-  failureRedirect: "/login?status=failure",
-});
+// const googleCallback = passport.authenticate("google", {
+//   failureRedirect: "/login?status=failure",
+// });
 
 // Facebook Authentication Middleware
 const facebookAuth = passport.authenticate("facebook", {
@@ -18,4 +18,4 @@ const facebookCallback = passport.authenticate("facebook", {
   failureRedirect: "/login",
 });
 
-module.exports = { googleAuth, googleCallback, facebookAuth, facebookCallback };
+module.exports = { googleAuth, facebookAuth, facebookCallback };

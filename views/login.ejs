@@ -127,41 +127,6 @@
   </div>
   <script src="/toast_alert.js"></script>
   <script src="/login.js"></script>
-
-  <script>
-    document.getElementById("loginForm").addEventListener("submit", async function (e) {
-      e.preventDefault();
-
-      const formData = {
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value,
-      };
-
-      try {
-        const response = await fetch("/auth/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          alertify.success(data.message || "Login successful! Redirecting...");
-          setTimeout(() => {
-            location.href = data.redirect || "/index"; // Redirect after success
-          }, 2000);
-        } else {
-          alertify.error(data.message || "Login failed. Please try again.");
-        }
-      } catch (error) {
-        console.error("Login error:", error);
-        alertify.error("An unexpected error occurred. Please try again.");
-      }
-    });
-  </script>
 </body>
 
 </html>

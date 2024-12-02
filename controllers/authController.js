@@ -17,21 +17,18 @@ const postLogin = async (req, res, next) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ success: false, errors: errors.array() });
   }
-
   const { email, password } = req.body;
-
   try {
-    // Find the user by email
     const user = await User.findOne({ email });
 
     if (!user) {
       return res
         .status(401)
-        .json({ success: false, message: "Invalid email or password" });
+        .json({ success: false, message: "User not exist" });
     }
 
     // Compare passwords
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res
         .status(401)
@@ -97,8 +94,12 @@ const postRegister = async (req, res) => {
     });
 
     await newUser.save();
-
-    res.status(201).json({ message: "Registration successful! Please login." });
+    // Respond with success
+    res.json({
+      success: true,
+      message: "Registration successfully",
+      redirect: "/login",
+    });
   } catch (error) {
     console.error("Error during registration:", error);
     res.status(500).json({ message: "Server error. Please try again later." });
@@ -106,9 +107,14 @@ const postRegister = async (req, res) => {
 };
 
 // Google Authentication Logic
-const getGoogleCallBack = (req, res) => {
-  res.redirect("/index?status=success");
-};
+// const getGoogleCallBack = (req, res) => {
+//   res.status(200).json({
+//     ok: true,
+//     status: "success",
+//     message: "Logged in successfully",
+//     redirect: "/index?status=success",
+//   });
+// };
 
 // Logout Logic
 const logout = (req, res) => {
@@ -125,6 +131,6 @@ module.exports = {
   postLogin,
   getRegister,
   postRegister,
-  getGoogleCallBack,
+  // getGoogleCallBack,
   logout,
 };
